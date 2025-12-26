@@ -1,5 +1,6 @@
 package Poo2;
 import java.util.Scanner;
+import java.util.ArrayList;
 
 public class Main {
 
@@ -7,29 +8,29 @@ public class Main {
 		Scanner ler = new Scanner(System.in);
 		int menu = 0;
 		
-		ContaBancaria cliente = new ContaBancaria("Yuri");
-
-
-		while(menu !=4) {
+		ArrayList<ContaBancaria> contas = new ArrayList<>();
+		
+		while(menu !=5) {
 			System.out.println("----------MENU----------");
-			System.out.println("[1] Depositar");
-			System.out.println("[2] Sacar");
-			System.out.println("[3] Consultar");
-			System.out.println("[4] Sair");
+			System.out.println("[1] Cadastrar Conta");
+			System.out.println("[2] Listar Contas");
+			System.out.println("[3] Depositar");
+			System.out.println("[4] Sacar");
+			System.out.println("[5] Sair");
 			System.out.println("Insira uma das opções acima.");
 			menu = ler.nextInt();
 			ler.nextLine();
 			
 		switch(menu) {
 		case 1:
-			double valor;
-			System.out.println("Insira o valor que deseja depositar.");
-			valor = ler.nextDouble();
-			ler.nextLine();
-			cliente.depositar(valor);
-			break;
+			System.out.println("Insira o Nome do Titular: ");
+			String titu = ler.nextLine();
+			ContaBancaria novaConta = new ContaBancaria(titu);
+			contas.add(novaConta);
+			int indice = contas.size();
+			System.out.println("Numero da Conta: " +  indice);
 			
-		case 2:
+		/*case 2:
 			double valorsaque;
 			System.out.println("Insira o valor que deseja sacar.");
 			valorsaque = ler.nextDouble();
@@ -47,6 +48,7 @@ public class Main {
 			
 			default:
 				System.out.println("Insira um número valido ao menu.");
+				*/
 			}	
 		}
 	}
