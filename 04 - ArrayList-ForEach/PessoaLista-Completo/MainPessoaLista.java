@@ -38,22 +38,31 @@ public class MainPessoaLista {
 			
 		case 2:
 			
+			if(lista.size() == 0) {
+				System.out.println("Nenhum nome na lista.");
+			}else {
 			System.out.println("ID |    NOME    |    IDADE");
 			for(int i = 0; i < lista.size(); i++) {
 			System.out.println(i + "   | " + lista.get(i).nomeGet() + "    | " + lista.get(i).idadeGet());
+				}
 			}
 			break;
 			
 		case 3:
 			System.out.println("Insira o nome da pessoa que deseja buscar: ");
 			String nomeBusca = ler.nextLine();
+			boolean encontrado = false;
 			for(int i = 0; i < lista.size(); i++) {
 				if(lista.get(i).nomeGet().equalsIgnoreCase(nomeBusca)) {
 					System.out.println(lista.get(i).nomeGet() + " | " + lista.get(i).idadeGet());
-				}else {
-					System.out.println("Nome não encontrado na lista.");
+					encontrado = true;
 				}
+				}
+			if(!encontrado) {
+				System.out.println("Nome não encontrado na lista.");
 			}
+			break;
+			
 		case 4:
 			
 		case 5:
