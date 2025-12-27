@@ -64,13 +64,57 @@ public class MainPessoaLista {
 			break;
 			
 		case 4:
+			int idExcluir;
+			if(lista.size() == 0) {
+				System.out.println("Nenhum nome na lista.");
+			}else {
+			System.out.println("ID |    NOME    |    IDADE");
+			for(int i = 0; i < lista.size(); i++) {
+			System.out.println(i + "   | " + lista.get(i).nomeGet() + "    | " + lista.get(i).idadeGet());
+				}
+		
+			System.out.println("Insira o ID referente a quem deseja excluir: ");
+			idExcluir = ler.nextInt();
+			ler.nextLine();
 			
+			if(lista.size() > idExcluir && idExcluir >=0 ){
+				lista.remove(idExcluir);
+				System.out.println("Pessoa removida com sucesso.");
+			}else {
+				System.out.println("ID não encontrado.");
+				}
+			}
+				break;
+				
 		case 5:
+			if(lista.size() == 0) {
+				System.out.println("Nenhum nome na lista.");
+			}else {
+			System.out.println("Pessoas Cadastradas");
+			System.out.println("ID |    NOME    |    IDADE");
+			for(int i = 0; i < lista.size(); i++) {
+			System.out.println(i + "   | " + lista.get(i).nomeGet() + "    | " + lista.get(i).idadeGet());
+				}
+			System.out.println("Insira o ID da pessoa que deseja fazer aniversário");
+			int aniversario = ler.nextInt();
+			ler.nextLine();
+			
+			if(aniversario < lista.size() && aniversario >=0) {
+				lista.get(aniversario).fazerAniversario();
+				System.out.println("Aniversário realizado.");
+				System.out.println("Agora " + lista.get(aniversario).nomeGet() + " tem " + lista.get(aniversario).idadeGet() + " anos");
+			}else {
+				System.out.println("ID não encontrado.");
+				}
+			}
+			break;
 			
 		case 0:
-			
-			default:
-				
+			System.out.println("Saindo...");
+		break;
+		
+		default:
+		System.out.println("Opção invalida. Insira um número válido.");		
 				
 		}
 		
