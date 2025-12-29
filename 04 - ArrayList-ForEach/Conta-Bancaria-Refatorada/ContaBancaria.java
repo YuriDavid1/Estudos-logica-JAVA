@@ -1,9 +1,7 @@
 	package Poo2;
-	import java.util.Scanner;
 	
 	public class ContaBancaria {
 	
-		Scanner ler = new Scanner (System.in);
 		private String titular;
 		private double saldo;
 		
