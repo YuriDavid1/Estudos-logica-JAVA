@@ -19,7 +19,8 @@ public class Main {
 		System.out.println("Tem computador? " + estoque.containsKey("Computador"));
 		
 		//Atualizar
-		System.out.println("Promoção no Nintendo Switch!    R$" + estoque.put("Nintendo Switch", 1800.00));
+		estoque.put("Nintendo Switch", 1800.00);
+		System.out.println("Promoção no Nintendo Switch!    R$" + estoque.get("Nintendo Switch"));
 		
 		//Listar tudo
 		System.out.println("Itens no estoque: " + estoque);
