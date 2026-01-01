@@ -67,5 +67,6 @@ Atualmente estou seguindo um roadmap focado em empregabilidade Java Júnior. Min
 [ ] Arquitetura em Camadas (Service, Repository).
 
 [ ] Persistência de Dados (Arquivos e Banco de Dados SQL).
+
 ---
 Desenvolvido por **Yuri David** 👨‍💻
