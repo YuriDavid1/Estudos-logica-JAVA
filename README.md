@@ -1,12 +1,12 @@
 # ☕ Estudos de Lógica de Programação - Java
 
-Este repositório mostra minha jornada de aprendizado e evolução nos fundamentos da programação utilizando a linguagem **Java**. 
+Este repositório mostra minha jornada de aprendizado e evolução nos fundamentos da programação utilizando a linguagem Java.
 
-Aqui estão os desafios práticos e projetos desenvolvidos com foco em lógica estruturada, manipulação de dados e boas práticas de codificação.
+Aqui estão os desafios práticos e projetos desenvolvidos, começando pela lógica estruturada e avançando para Orientação a Objetos e Estruturas de Dados.
 
 ## 🚀 Sobre o Repositório
 
-O objetivo destes projetos é consolidar conhecimentos essenciais antes de avançar para a Orientação a Objetos. Todos os códigos são baseados em interação via Console (Terminal), focando totalmente na lógica e na robustez do código.
+O objetivo destes projetos é consolidar conhecimentos essenciais da linguagem. Os códigos iniciais focam em lógica procedural, enquanto os mais recentes implementam classes, objetos e coleções dinâmicas.
 
 **Principais tópicos praticados:**
 * Estruturas Condicionais (`if/else`, `switch/case`)
@@ -15,6 +15,8 @@ O objetivo destes projetos é consolidar conhecimentos essenciais antes de avan�
 * Tratamento de Entrada de Dados (`Scanner`)
 * Modularização (Métodos estáticos)
 * Validação de Regras de Negócio e "Defensive Programming"
+* Orientação a Objetos (Classes, Atributos, Métodos, Construtores)
+* Coleções Java (ArrayList, HashMap)
 
 ## 📂 Projetos Destacados
 
@@ -33,6 +35,19 @@ Primeiro projeto focado em estruturas de decisão.
 * **Funcionalidades:** Depósito, Saque, Consulta de Saldo e Extrato simples.
 * **Destaque Técnico:** Uso de menu interativo com `switch/case`.
 
+### 4. Sistema Bancário 2.0 (POO + ArrayList)
+Refatoração do simulador bancário antigo, abandonando vetores fixos.
+
+### 5. Estudos com HashMap (Loja Gamer & TodoList)
+Introdução ao conceito de Chave-Valor para manipulação eficiente de dados.
+
+Foco: Performance de busca e substituição de lógica linear por dicionários.
+Comandos: Uso prático de .put(), .get() e .containsKey().
+
+* **Funcionalidades:** Criação dinâmica de contas, gerenciamento via lista (ArrayList) e manipulação de objetos.
+
+* **Destaque Técnico:** Encapsulamento de saldo e uso de construtores para inicializar objetos.
+
 ## 🛠️ Tecnologias Utilizadas
 
 * **Linguagem:** Java (JDK)
@@ -41,8 +56,12 @@ Primeiro projeto focado em estruturas de decisão.
 
 ## 🔜 Próximos Passos
 Atualmente estou focado em dominar a Lógica Estruturada. Os próximos passos desta jornada incluem:
-- [ ] Refatoração dos projetos para Orientação a Objetos (POO).
-- [ ] Implementação de coleções (`ArrayList`).
-- [ ] Persistência de dados básica.
+Atualmente estou seguindo um roadmap focado em empregabilidade Java Júnior. Minha evolução:
+
+[x] Lógica de Programação e Algoritmos.
+[x] Refatoração para Orientação a Objetos (POO).
+[x] Implementação de coleções (ArrayList, HashMap).
+[ ] Arquitetura em Camadas (Service, Repository).
+[ ] Persistência de Dados (Arquivos e Banco de Dados SQL).
 ---
-Desenvolvido por **[Yuri David]** 👨‍💻
+Desenvolvido por **Yuri David** 👨‍💻
