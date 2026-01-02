@@ -59,9 +59,14 @@ Atualmente estou focado em dominar a Lógica Estruturada. Os próximos passos de
 Atualmente estou seguindo um roadmap focado em empregabilidade Java Júnior. Minha evolução:
 
 [x] Lógica de Programação e Algoritmos.
+
 [x] Refatoração para Orientação a Objetos (POO).
+
 [x] Implementação de coleções (ArrayList, HashMap).
+
 [ ] Arquitetura em Camadas (Service, Repository).
+
 [ ] Persistência de Dados (Arquivos e Banco de Dados SQL).
+
 ---
 Desenvolvido por **Yuri David** 👨‍💻
