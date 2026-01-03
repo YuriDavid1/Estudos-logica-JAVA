@@ -68,5 +68,6 @@ Atualmente estou seguindo um roadmap focado em empregabilidade Java Júnior. Min
 
 [ ] Persistência de Dados (Arquivos e Banco de Dados SQL).
 
+.
 ---
 Desenvolvido por **Yuri David** 👨‍💻
