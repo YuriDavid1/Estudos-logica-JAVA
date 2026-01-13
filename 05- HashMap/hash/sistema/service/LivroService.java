@@ -1,4 +1,5 @@
 package sistema.service;
+import sistema.model.EstadoLivro;
 import sistema.model.Livro;
 import java.util.HashMap;
 
@@ -58,12 +59,12 @@ public class LivroService {
 			System.out.println("Livro não encontrado para este ID.");
 		return false;
 		}
-		if(livro.getEmprestado()) {
+		if(livro.getEstado() == EstadoLivro.EMPRESTADO) {
 			System.out.println("Livro já emprestado.");
 			return false;
 		}
 		System.out.println("Livro emprestado.");
-		livro.setEmprestado(true);
+		livro.SetEstado(EstadoLivro.EMPRESTADO);
 		return true;
 	}
 	
@@ -73,12 +74,12 @@ public class LivroService {
 			System.out.println("Livro não encontrado para este ID.");
 			return false;
 		}
-		if(!livro.getEmprestado()) {
+		if(livro.getEstado() == EstadoLivro.DISPONIVEL) {
 			System.out.println("Este livro não esta emprestado.");
 			return false;
 		}
 		System.out.println("Livro devolvido.");
-		livro.setEmprestado(false);
+		livro.SetEstado(EstadoLivro.DISPONIVEL);
 		return true;
 	}
 	
