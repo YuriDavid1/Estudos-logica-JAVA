@@ -1,5 +1,11 @@
-package curso.view;
-
+package sistema.view;
+import sistema.view.Menu;
 public class Main {
 
+	public static void main(String[]args) {
+		Menu menu = new Menu();
+		
+		menu.exibirMenu();
+		
+	}
 }
