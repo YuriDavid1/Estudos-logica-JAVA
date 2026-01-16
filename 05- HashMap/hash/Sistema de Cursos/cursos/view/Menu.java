@@ -1,121 +1,175 @@
-package sistema.view;
-import sistema.model.Livro;
-import sistema.repository.LivroRepository;
-import sistema.service.LivroService;
+package curso.view;
+
+import curso.model.Curso;
+import curso.model.EstadoCurso;
+import curso.repository.CursoRepository;
+import curso.service.CursoService;
+
 import java.util.Scanner;
+import java.util.Map;
 
 public class Menu {
 
-	private Scanner ler = new Scanner(System.in);
-	private LivroService livroService;
-	
-	public Menu() {
-		LivroRepository repositorio = new LivroRepository();
-		livroService = new LivroService (repositorio);
-	}
-	
-	public void exibirMenu() {
-		int  opcao = 0;
-	
-	
-	do {
-        System.out.println("\n=== SISTEMA DE BIBLIOTECA ===");
-        System.out.println("1 - Cadastrar livro");
-        System.out.println("2 - Remover livro");
-        System.out.println("3 - Buscar livro por ID");
-        System.out.println("4 - Emprestar livro");
-        System.out.println("5 - Devolver livro");
-        System.out.println("6 - Listar livros");
-        System.out.println("0 - Sair");
-        System.out.print("Escolha: ");
+    private Scanner scanner = new Scanner(System.in);
+    private CursoService cursoService;
 
-        opcao = ler.nextInt();
-        ler.nextLine();
+    public Menu() {
+        CursoRepository repository = new CursoRepository();
+        this.cursoService = new CursoService(repository);
+    }
 
-        switch(opcao) {
-        case 1:
-        System.out.println("Insira o ID do livro:");
-        int id = ler.nextInt();
-        ler.nextLine();
-        	
-        System.out.println("Insira o titulo do Livro: ");
-        String titulo = ler.nextLine();
-        
-        System.out.println("Insira o nome do autor: ");
-        String autor = ler.nextLine();
-        
-        Livro salvar = new Livro(id, titulo, autor);
-        livroService.cadastrarLivro(salvar);
-        	break;
-        	
-        	
-        case 2:
-        	System.out.println("Insira o ID do livro que deseja remover: ");
-        	id = ler.nextInt();
-        	ler.nextLine();
-        	livroService.removerLivro(id);        	
-        	break;
-        	
-        	
-        case 3:
-        	System.out.println("Insira o ID do livro que deseja buscar:");
-        	id = ler.nextInt();
-        	ler.nextLine();
-        	Livro livrosalvar = livroService.buscarLivro(id);
-        	if(livrosalvar != null) {
-        	System.out.println("ID: " +livrosalvar.getId());
-        	System.out.println("Titulo: " +livrosalvar.getTitulo());
-        	System.out.println("Autor: " +livrosalvar.getAutor());
-        	}else {
-        		System.out.println("Livro não encontrado.");
-        	}
-        	break;
-        	
-        case 4:
-        	System.out.println("Insira o ID do livro que deseja emprestar:");
-        	id = ler.nextInt();
-        	ler.nextLine();
-        	livroService.emprestarLivro(id);
-        	break;
-        	
-        	
-        case 5:
-        	System.out.println("Insira o ID do livro que deseja devolver: ");
-        	id = ler.nextInt();
-        	ler.nextLine();
-        	livroService.devolverLivro(id);
-        	break;
-        	
-        	
-        case 6:
-            if (livroService.listarLivro().isEmpty()) {
-                System.out.println("Nenhum livro cadastrado.");
-            } else {
-                for (Livro livro : livroService.listarLivro().values()) {
-                    System.out.println(
-                        livro.getId() + " | " +
-                        livro.getTitulo() + " | " +
-                        livro.getAutor() + " | Emprestado: " +
-                        livro.getEmprestado()
-                    );
-                }
+    public void exibirMenu() {
+        int opcao;
+
+        do {
+            System.out.println("\n===== SISTEMA DE CURSOS =====");
+            System.out.println("1 - Cadastrar curso");
+            System.out.println("2 - Buscar curso por ID");
+            System.out.println("3 - Alterar estado do curso");
+            System.out.println("4 - Listar cursos");
+            System.out.println("5 - Remover curso");
+            System.out.println("0 - Sair");
+            System.out.print("Escolha uma opção: ");
+
+            opcao = scanner.nextInt();
+            scanner.nextLine();
+
+            switch (opcao) {
+
+                case 1:
+                    cadastrarCurso();
+                    break;
+
+                case 2:
+                    buscarCurso();
+                    break;
+
+                case 3:
+                    alterarEstadoCurso();
+                    break;
+
+                case 4:
+                    listarCursos();
+                    break;
+
+                case 5:
+                    removerCurso();
+                    break;
+
+                case 0:
+                    System.out.println("Saindo do sistema...");
+                    break;
+
+                default:
+                    System.out.println("Opção inválida.");
             }
-        	
-        	break;
-        	
-        	
-        case 0: 
-        	System.out.println("Saindo...");
-        	break;
-        
-        	
-        default:
-        	System.out.println("Opção invalida.");
-        break;
-        
+
+        } while (opcao != 0);
+    }
+
+    // ==========================
+    // MÉTODOS DO MENU
+    // ==========================
+
+    private void cadastrarCurso() {
+        System.out.println("\n--- CADASTRAR CURSO ---");
+
+        System.out.print("ID do curso: ");
+        int id = scanner.nextInt();
+        scanner.nextLine();
+
+        System.out.print("Nome do curso: ");
+        String nome = scanner.nextLine();
+
+        System.out.print("Carga horária: ");
+        int cargaHoraria = scanner.nextInt();
+        scanner.nextLine();
+
+        Curso curso = new Curso(id, nome, cargaHoraria);
+        cursoService.criarCurso(curso);
+    }
+
+    private void buscarCurso() {
+        System.out.println("\n--- BUSCAR CURSO ---");
+
+        System.out.print("ID do curso: ");
+        int id = scanner.nextInt();
+        scanner.nextLine();
+
+        Curso curso = cursoService.buscarPorId(id);
+
+        if (curso != null) {
+            System.out.println("ID: " + curso.getId());
+            System.out.println("Nome: " + curso.getNome());
+            System.out.println("Carga Horária: " + curso.getCargaHoraria());
+            System.out.println("Estado: " + curso.getEstado());
         }
-		
-		}while(opcao!=0);
-	
-	}
+    }
+
+    private void alterarEstadoCurso() {
+        System.out.println("\n--- ALTERAR ESTADO DO CURSO ---");
+
+        System.out.print("ID do curso: ");
+        int id = scanner.nextInt();
+        scanner.nextLine();
+
+        Curso curso = cursoService.buscarPorId(id);
+        if (curso == null) {
+            return;
+        }
+
+        System.out.println("Estado atual: " + curso.getEstado());
+        System.out.println("1 - ATIVO");
+        System.out.println("2 - INATIVO");
+        System.out.println("3 - CANCELADO");
+        System.out.print("Novo estado: ");
+
+        int opcao = scanner.nextInt();
+        scanner.nextLine();
+
+        EstadoCurso novoEstado = null;
+
+        switch (opcao) {
+            case 1 -> novoEstado = EstadoCurso.ATIVO;
+            case 2 -> novoEstado = EstadoCurso.INATIVO;
+            case 3 -> novoEstado = EstadoCurso.CANCELADO;
+            default -> {
+                System.out.println("Estado inválido.");
+                return;
+            }
+        }
+
+        curso.setEstado(novoEstado);
+        System.out.println("Estado alterado com sucesso.");
+    }
+
+    private void listarCursos() {
+        System.out.println("\n--- LISTA DE CURSOS ---");
+
+        Map<Integer, Curso> cursos = cursoService.listarCursos();
+
+        if (cursos.isEmpty()) {
+            System.out.println("Nenhum curso cadastrado.");
+            return;
+        }
+
+        for (Curso curso : cursos.values()) {
+            System.out.println(
+                curso.getId() + " | " +
+                curso.getNome() + " | " +
+                curso.getCargaHoraria() + "h | " +
+                curso.getEstado()
+            );
+        }
+    }
+
+    private void removerCurso() {
+        System.out.println("\n--- REMOVER CURSO ---");
+
+        System.out.print("ID do curso: ");
+        int id = scanner.nextInt();
+        scanner.nextLine();
+
+        cursoService.removerCurso(id);
+    }
 }
