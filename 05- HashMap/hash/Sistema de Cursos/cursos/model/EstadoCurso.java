@@ -1,3 +1,4 @@
+
 package curso.model;
 
 public enum EstadoCurso {

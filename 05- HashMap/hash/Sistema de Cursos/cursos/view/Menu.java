@@ -67,9 +67,6 @@ public class Menu {
         } while (opcao != 0);
     }
 
-    // ==========================
-    // MÉTODOS DO MENU
-    // ==========================
 
     private void cadastrarCurso() {
         System.out.println("\n--- CADASTRAR CURSO ---");
