@@ -1,14 +1,14 @@
 package matricula.service;
 import matricula.model.EstadoCurso;
 import matricula.repository.CursosRepository;
+
+import java.util.HashMap;
+
 import matricula.model.Curso;
 public class CursosService {
 
 	private CursosRepository repositorio;
-	Scanner ler = new Scanner(System.in);
-	
-	
-	
+		
 	public CursosService(CursosRepository repostiorio) {
 		this.repositorio = repositorio;
 	}
@@ -53,39 +53,28 @@ public class CursosService {
 		return true;
 	}
 	
-	public boolean alterarEstado(int id, EstadoCurso curso) {
-		Curso curso1 = repositorio.buscarPorId(id);
-		if(curso1 == null) {
+	public boolean alterarEstado(int id, EstadoCurso estado) {
+		Curso curso = repositorio.buscarPorId(id);
+		if(curso == null) {
 			throw new IllegalArgumentException("Insira um ID de um curso válido.");
 		}
+		//Verifica se o estado é cancelado
+		if(curso.getEstado() == EstadoCurso.CANCELADO) {
+			throw new IllegalArgumentException("Não é possível alterar o estado de um curso cancelado.");
+		}
+		//Se o estado for o mesmo, não faz nada
+		if(curso.getEstado() == estado) {
+			throw new IllegalArgumentException("O estado que você inseriu é o mesmo atual.");
+		}
 		
-		
+		curso.setEstado(estado);
+		System.out.println("Estado definido com sucesso.");
 		return true;
 	}
 	
+	//Listar todos
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+	public HashMap<Integer, Curso> listarCursos(){
+		return repositorio.listarTodos();	}
 	
 }
