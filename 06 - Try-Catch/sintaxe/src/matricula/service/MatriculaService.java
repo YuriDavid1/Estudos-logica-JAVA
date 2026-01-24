@@ -20,7 +20,6 @@ public MatriculaService(MatriculaRepository repositorio, AlunosRepository alunoR
 	
 	
 	public boolean criarMatricula(int idMatricula, int idAluno, int idCurso) {
-		Matricula matricula = matriculaRepositorio.buscarPorId(idMatricula);
 	//Verificações da MATRICULA
 	if(idMatricula <= 0) {
 		throw new IllegalArgumentException("O ID deve ser válido.");
@@ -40,8 +39,8 @@ public MatriculaService(MatriculaRepository repositorio, AlunosRepository alunoR
 		throw new IllegalArgumentException("Este curso não existe.");
 	}
 
-	Matricula matricula1 = new Matricula(idMatricula, aluno, curso);
-	matriculaRepositorio.criarMatricula(matricula1);
+	Matricula matricula = new Matricula(idMatricula, aluno, curso);
+	matriculaRepositorio.criarMatricula(matricula);
 	return true;	
 	}
 	
