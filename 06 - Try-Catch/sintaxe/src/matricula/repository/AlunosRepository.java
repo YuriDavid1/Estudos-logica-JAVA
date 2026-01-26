@@ -21,5 +21,14 @@ public void removerPorId(int id) {
 
 public HashMap<Integer, Aluno> listarTodos() {
 	return alunosHash;
-}
+	}
+
+public Aluno buscarAlunoPorNome(String nome) {
+	for(Aluno aluno : alunosHash.values()) {
+		if(aluno.getNome().equalsIgnoreCase(nome)){
+		return aluno;
+		}
+	}
+	return null;
+	}
 }

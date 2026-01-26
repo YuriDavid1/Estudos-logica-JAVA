@@ -21,4 +21,13 @@ public class CursosRepository {
 	public HashMap<Integer, Curso> listarTodos() {
 	return cursosHash;
 	}
+	
+	public Curso buscarCursoPorNome(String nome) {
+		for(Curso curso : cursosHash.values()) {
+			if(curso.getNome().equalsIgnoreCase(nome)) {
+				return curso;
+			}
+		}
+		return null;
+	}
 }
