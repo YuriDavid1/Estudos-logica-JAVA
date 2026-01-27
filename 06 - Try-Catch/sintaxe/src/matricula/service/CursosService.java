@@ -3,6 +3,7 @@ import matricula.model.EstadoCurso;
 import matricula.repository.CursosRepository;
 
 import java.util.HashMap;
+import java.util.NoSuchElementException;
 
 import matricula.model.Curso;
 public class CursosService {
@@ -37,7 +38,7 @@ public class CursosService {
 	//Verificação do buscar por id
 	public Curso buscarPorId(int id) {
 		if(repositorio.buscarPorId(id) == null) {
-			throw new IllegalArgumentException("Insira um ID válido.");
+			throw new NoSuchElementException("Curso não encontrado");
 		}
 		
 		return repositorio.buscarPorId(id);
@@ -46,7 +47,7 @@ public class CursosService {
 	//Verificação de remoção de curso
 	public boolean removerCurso(int id) {
 		if(repositorio.buscarPorId(id) == null) {
-			throw new IllegalArgumentException("Id inexistente.");
+			throw new NoSuchElementException("Curso não encontrado.");
 		}
 		
 		repositorio.removerPorId(id);

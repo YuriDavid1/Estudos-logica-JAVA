@@ -1,8 +1,11 @@
 		package matricula.view;
-		import java.util.Scanner;
+		import java.util.InputMismatchException;
+import java.util.Scanner;
 	
 	import matricula.model.Aluno;
-	import matricula.repository.AlunosRepository;
+import matricula.model.Curso;
+import matricula.model.Matricula;
+import matricula.repository.AlunosRepository;
 	import matricula.repository.CursosRepository;
 	import matricula.repository.MatriculaRepository;
 	import matricula.service.AlunoService;
@@ -61,22 +64,51 @@
 				
 				switch(opcaoAluno) {
 				case 1 -> {
+					try {
 				System.out.println("Insira o número de matricula do aluno: ");
 				int id = ler.nextInt();
 				ler.nextLine();
+				
 				System.out.println("Insira o nome do aluno: ");
 				String nome = ler.nextLine();
+				
 				System.out.println("Insira a idade do aluno: ");
 				int idade = ler.nextInt();
 				ler.nextLine();
+				
 				Aluno aluno = new Aluno (id, nome, idade);
 				alunoService.cadastrarAluno(aluno);
-				}
-				default -> {  System.out.println("Insira uma opção válida.");
-						}
+				System.out.println("Aluno cadastrado com sucesso.");
+				}catch(IllegalArgumentException e) {
+					System.out.println("Erro: " +e.getMessage());
+				}catch(Exception e) {
+					System.out.println("Erro inesperado.");
 					}
+				}
+				
+				case 2-> {
+					try {
+						System.out.println("Insira o número de Matricula do aluno: ");
+						int id = ler.nextInt();
+						ler.nextLine();
+						Matricula mat = matriculaService.buscarPorId(id);
+						Aluno aluno = mat.getAluno();
+						Curso curso = mat.getCurso();
+						System.out.println("Matricula: " + mat.getId() + 
+										   "Nome do aluno: " + aluno.getNome() + 
+										   "Idade: " + aluno.getIdade() + 
+										   "Cursando: " + curso.getNome());
+							
+					}catch(IllegalArgumentException e) {
+						System.out.println("Erro: " + e.getMessage());
+					}catch(Exception e) {
+					
+						System.out.println("Erro inesperado.");
+					}
+				}
+			}
 				}while(opcaoAluno != 0);
 			}
 		}
-			
+		
 		
