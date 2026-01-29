@@ -65,7 +65,7 @@ import matricula.repository.AlunosRepository;
 				switch(opcaoAluno) {
 				case 1 -> {
 					try {
-				System.out.println("Insira o número de matricula do aluno: ");
+				System.out.println("Insira o ID do aluno: ");
 				int id = ler.nextInt();
 				ler.nextLine();
 				
@@ -86,27 +86,47 @@ import matricula.repository.AlunosRepository;
 					}
 				}
 				
-				case 2-> {
+				case 2 -> {
+				    try {
+				        System.out.println("Insira o nome do aluno:");
+				        String nome = ler.nextLine();
+
+				        // Busca o aluno
+				        Aluno aluno = alunoService.buscarPorNome(nome);
+
+				        System.out.println("ID: " + aluno.getId());
+				        System.out.println("Nome: " + aluno.getNome());
+				        System.out.println("Idade: " + aluno.getIdade());
+
+				        // Tenta buscar matrícula do aluno
+				        try {
+				            Matricula matricula = matriculaService.buscarPorId(aluno.getId());
+				            Curso curso = matricula.getCurso();
+
+				            System.out.println("Cursando: " + curso.getNome());
+
+				        } catch (IllegalArgumentException e) {
+				            // Aluno existe, mas não está matriculado
+				            System.out.println("Cursando: nenhum curso");
+				        }
+
+				    } catch (IllegalArgumentException e) {
+				        System.out.println("Erro: " + e.getMessage());
+				    } catch (Exception e) {
+				        System.out.println("Erro inesperado.");
+				    }
+				}
+
+				case 3 ->{
 					try {
-						System.out.println("Insira o número de Matricula do aluno: ");
+						System.out.println("Insira o número de Matricula do aluno:");
 						int id = ler.nextInt();
 						ler.nextLine();
 						Matricula mat = matriculaService.buscarPorId(id);
-						Aluno aluno = mat.getAluno();
-						Curso curso = mat.getCurso();
-						System.out.println("Matricula: " + mat.getId() + 
-										   "Nome do aluno: " + aluno.getNome() + 
-										   "Idade: " + aluno.getIdade() + 
-										   "Cursando: " + curso.getNome());
-							
-					}catch(IllegalArgumentException e) {
-						System.out.println("Erro: " + e.getMessage());
-					}catch(Exception e) {
-					
-						System.out.println("Erro inesperado.");
+						
 					}
 				}
-			}
+				}
 				}while(opcaoAluno != 0);
 			}
 		}

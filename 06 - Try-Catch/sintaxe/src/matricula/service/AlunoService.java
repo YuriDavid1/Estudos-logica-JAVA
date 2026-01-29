@@ -55,7 +55,13 @@ public class AlunoService {
 		return repositorio.listarTodos();
 	}
 	
-	
+	public Aluno buscarPorNome(String nome) {
+		Aluno aluno = repositorio.buscarAlunoPorNome(nome);
+		if(aluno == null ) {
+			throw new IllegalArgumentException("Aluno não encontrado");
+		}
+		return repositorio.buscarAlunoPorNome(nome);
+	}
 	
 	
 }
