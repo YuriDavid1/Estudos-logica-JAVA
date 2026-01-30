@@ -119,12 +119,20 @@ import matricula.repository.AlunosRepository;
 
 				case 3 ->{
 					try {
-						System.out.println("Insira o número de Matricula do aluno:");
-						int id = ler.nextInt();
-						ler.nextLine();
-						Matricula mat = matriculaService.buscarPorId(id);
-						
+						System.out.println("Insira o nome do aluno:");
+						String nome = ler.nextLine();
+						Aluno aluno = alunoService.buscarPorNome(nome);
+						alunoService.removerAluno(aluno.getId());
+						System.out.println("Aluno removido com êxito.");
+					}catch(IllegalArgumentException e){
+						System.out.println("Erro. Tipo de dado invalido.");
+					}catch(Exception e) {
+						System.out.println("Erro inesperado.");
+						}
 					}
+				
+				case 4 ->{
+					
 				}
 				}
 				}while(opcaoAluno != 0);
