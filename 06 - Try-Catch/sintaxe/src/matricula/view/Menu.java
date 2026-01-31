@@ -18,6 +18,7 @@ import matricula.repository.AlunosRepository;
 			private CursosService cursoService;
 			private MatriculaService matriculaService;
 			private Scanner ler = new Scanner(System.in);
+			private int total = 0;
 			
 			public Menu() {
 				AlunosRepository alunoRepositorio = new AlunosRepository();
@@ -100,7 +101,7 @@ import matricula.repository.AlunosRepository;
 
 				        // Tenta buscar matrícula do aluno
 				        try {
-				            Matricula matricula = matriculaService.buscarPorId(aluno.getId());
+				            Matricula matricula = matriculaService.buscarPorAlunoId(aluno.getId());
 				            Curso curso = matricula.getCurso();
 
 				            System.out.println("Cursando: " + curso.getNome());
@@ -125,15 +126,20 @@ import matricula.repository.AlunosRepository;
 						alunoService.removerAluno(aluno.getId());
 						System.out.println("Aluno removido com êxito.");
 					}catch(IllegalArgumentException e){
-						System.out.println("Erro. Tipo de dado invalido.");
-					}catch(Exception e) {
+						System.out.println("Erro: " + e.getMessage());
+						}catch(Exception e) {
 						System.out.println("Erro inesperado.");
 						}
 					}
 				
 				case 4 ->{
-					
+				for(Aluno aluno: alunoService.listarTodos().values()) {
+					System.out.println("Nome: " +  aluno.getNome() + 
+							           "Idade: " + aluno.getIdade());
+					total++;
 				}
+				System.out.println("Quantidade total de alunos: " + total);
+					}
 				}
 				}while(opcaoAluno != 0);
 			}

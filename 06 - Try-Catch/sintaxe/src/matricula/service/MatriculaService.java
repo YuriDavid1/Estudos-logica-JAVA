@@ -51,5 +51,17 @@ public MatriculaService(MatriculaRepository repositorio, AlunosRepository alunoR
 		return matriculaRepositorio.buscarPorId(id);
 	}
 	
+	public Matricula buscarPorAlunoId(int idAluno) {
+
+	    for (Matricula matricula : matriculaRepositorio.listarTodos().values()) {
+	        if (matricula.getAluno().getId() == idAluno) {
+	            return matricula;
+	        }
+	    }
+
+	    throw new IllegalArgumentException("Aluno não está matriculado em nenhum curso.");
+	}
+
+	
 	
 }

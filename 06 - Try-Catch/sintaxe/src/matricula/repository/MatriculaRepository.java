@@ -16,4 +16,8 @@ public class MatriculaRepository {
 		return matriculaHash.get(id);
 	}
 	
+	public HashMap<Integer, Matricula> listarTodos(){
+		return matriculaHash;
+	}
+	
 }
