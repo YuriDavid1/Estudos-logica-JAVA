@@ -5,6 +5,7 @@ import matricula.repository.CursosRepository;
 import java.util.HashMap;
 import java.util.NoSuchElementException;
 
+import matricula.model.Aluno;
 import matricula.model.Curso;
 public class CursosService {
 
@@ -77,5 +78,14 @@ public class CursosService {
 	
 	public HashMap<Integer, Curso> listarCursos(){
 		return repositorio.listarTodos();	}
+
+	
+	public Curso buscarPorNome(String nome) {
+		Curso curso = repositorio.buscarCursoPorNome(nome);
+		if(curso == null ) {
+			throw new IllegalArgumentException("Aluno não encontrado");
+		}
+		return repositorio.buscarCursoPorNome(nome);
+	}
 	
 }

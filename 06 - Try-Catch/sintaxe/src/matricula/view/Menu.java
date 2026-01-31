@@ -91,26 +91,18 @@ import matricula.repository.AlunosRepository;
 				    try {
 				        System.out.println("Insira o nome do aluno:");
 				        String nome = ler.nextLine();
-
-				        // Busca o aluno
 				        Aluno aluno = alunoService.buscarPorNome(nome);
-
 				        System.out.println("ID: " + aluno.getId());
 				        System.out.println("Nome: " + aluno.getNome());
 				        System.out.println("Idade: " + aluno.getIdade());
 
-				        // Tenta buscar matrícula do aluno
 				        try {
 				            Matricula matricula = matriculaService.buscarPorAlunoId(aluno.getId());
 				            Curso curso = matricula.getCurso();
-
 				            System.out.println("Cursando: " + curso.getNome());
-
 				        } catch (IllegalArgumentException e) {
-				            // Aluno existe, mas não está matriculado
 				            System.out.println("Cursando: nenhum curso");
 				        }
-
 				    } catch (IllegalArgumentException e) {
 				        System.out.println("Erro: " + e.getMessage());
 				    } catch (Exception e) {
@@ -143,6 +135,87 @@ import matricula.repository.AlunosRepository;
 				}
 				}while(opcaoAluno != 0);
 			}
+			
+			public void menuCurso() {
+				int opcaoCurso;
+				do {
+				System.out.println("[1] Cadastrar curso");
+				System.out.println("[2] Buscar curso");
+				System.out.println("[3] Remover curso");
+				System.out.println("[4] Listar todos os cursos");
+				System.out.println("[5] Alterar estado do curso");
+				System.out.println("[0] Voltar");
+				System.out.println("Insira a opção desejada:");
+				opcaoCurso = ler.nextInt();
+				ler.nextLine();
+				
+				switch(opcaoCurso) {
+				case 1 -> 	{
+				try {
+					System.out.println("Insira o ID do curso: ");
+					int id = ler.nextInt();
+					ler.nextLine();
+					
+					System.out.println("Insira o nome do curso: ");
+					String nome = ler.nextLine();
+					
+					System.out.println("Insira a carga horaria: ");
+					int cargaHoraria = ler.nextInt();
+					ler.nextLine();
+					Curso curso = new Curso(id, nome, cargaHoraria);
+					
+					System.out.println("Curso criado com êxito.");
+					cursoService.criarCurso(curso);
+				}catch(IllegalArgumentException e ) {
+					System.out.println("Erro: " + e.getMessage());
+				}catch(Exception e) {
+					System.out.println("Erro inesperado.");
+					}
+				}
+				case 2 -> 	{
+					try {
+					System.out.println("Insira o nome do curso que deseja buscar: ");
+					String nome = ler.nextLine();
+					cursoService.buscarPorNome(nome);
+					Curso curso = cursoService.buscarPorNome(nome);
+					System.out.println("Curso: " + curso.getNome() +
+									   "Carga horaria: " + curso.getCargaHoraria() +
+									   "Estado: " + curso.getEstado());
+					}catch(IllegalArgumentException e) {
+						System.out.println("Erro: " + e.getMessage());
+					}catch(Exception e) {
+						System.out.println("Erro inesperado");
+						}
+					}
+				case 3 ->	{
+					try{
+					System.out.println("Insira o nome do curso que deseja remover: ");
+					String nome = ler.nextLine();
+					Curso curso = cursoService.buscarPorNome(nome);
+					cursoService.removerCurso(curso.getId());
+					System.out.println("Curso removido com êxito.");
+					}catch(IllegalArgumentException e ) {
+						System.out.println("Erro: " + e.getMessage());
+					}catch(Exception e) {
+						System.out.println("Erro inesperado.");
+					}
+				}
+				case 4 ->	{
+				for(Curso curso : cursoService.listarCursos().values()) {
+					System.out.println("Nome: " + curso.getNome() + 
+							           "Carga horaria: " + curso.getCargaHoraria() + 
+							           "Estado: " + curso.getCargaHoraria());
+					
+				}
+				}
+				case 5 -> {
+					System.out.println("Insira o curso que deseja alterar: ");
+					String nome = ler.nextLine();
+					Curso curso = cursoService.buscarPorNome(nome);
+					
+				}
+				}
+					}while(opcaoCurso != 0);
+			}
 		}
-		
 		
