@@ -51,10 +51,10 @@ public MatriculaService(MatriculaRepository repositorio, AlunosRepository alunoR
 		return matriculaRepositorio.buscarPorId(id);
 	}
 	
-	public Matricula buscarPorAlunoId(int idAluno) {
+	public Matricula buscarPorAluno(String nomeAluno) {
 
 	    for (Matricula matricula : matriculaRepositorio.listarTodos().values()) {
-	        if (matricula.getAluno().getId() == idAluno) {
+	        if (matricula.getAluno().getNome() == nomeAluno) {
 	            return matricula;
 	        }
 	    }
