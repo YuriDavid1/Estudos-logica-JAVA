@@ -20,4 +20,7 @@ public class MatriculaRepository {
 		return matriculaHash;
 	}
 	
+	public Matricula removerMatricula(int id) {
+		return matriculaHash.remove(id);
+	}
 }

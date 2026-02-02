@@ -19,7 +19,6 @@ import matricula.repository.AlunosRepository;
 			private CursosService cursoService;
 			private MatriculaService matriculaService;
 			private Scanner ler = new Scanner(System.in);
-			private int total = 0;
 			
 			public Menu() {
 				AlunosRepository alunoRepositorio = new AlunosRepository();
@@ -43,8 +42,18 @@ import matricula.repository.AlunosRepository;
 			ler.nextLine();
 			
 			switch(opcao) {
-			case 1 -> System.out.println("[1] ");
+			case 1 -> {
+				menuAluno();
+			}
 	
+			case 2 ->{
+				menuCurso();
+			}
+			
+			case 3 ->{
+				menuMatricula();
+			}
+			
 			default -> System.out.println("Insira uma opção válida");
 			}
 			
@@ -98,7 +107,7 @@ import matricula.repository.AlunosRepository;
 				        System.out.println("Idade: " + aluno.getIdade());
 
 				        try {
-				            Matricula matricula = matriculaService.buscarPorAlunoId(aluno.getId());
+				            Matricula matricula = matriculaService.buscarPorAluno(aluno.getNome());
 				            Curso curso = matricula.getCurso();
 				            System.out.println("Cursando: " + curso.getNome());
 				        } catch (IllegalArgumentException e) {
@@ -126,6 +135,7 @@ import matricula.repository.AlunosRepository;
 					}
 				
 				case 4 ->{
+					int total = 0;
 				for(Aluno aluno: alunoService.listarTodos().values()) {
 					System.out.println("Nome: " +  aluno.getNome() + 
 							           "Idade: " + aluno.getIdade());
@@ -133,7 +143,17 @@ import matricula.repository.AlunosRepository;
 				}
 				System.out.println("Quantidade total de alunos: " + total);
 					}
+				case 0 ->{
+					return;
 				}
+				
+				default ->{
+					System.out.println("Opção invalida");
+				}
+				}
+				
+				
+				
 				}while(opcaoAluno != 0);
 			}
 			
@@ -255,9 +275,8 @@ import matricula.repository.AlunosRepository;
 				do {
 				System.out.println("[1] Matricular aluno");
 				System.out.println("[2] Buscar matricula");
-				System.out.println("[3] Remover curso");
-				System.out.println("[4] Listar todos os cursos");
-				System.out.println("[5] Alterar estado do curso");
+				System.out.println("[3] Remover matricula");
+				System.out.println("[4] Listar todas as matriculas");
 				System.out.println("[0] Voltar");
 				System.out.println("Insira a opção desejada:");
 				opcaoMatricula = ler.nextInt();
@@ -265,6 +284,7 @@ import matricula.repository.AlunosRepository;
 				
 				switch(opcaoMatricula) {
 				case 1 ->{
+					try {
 					System.out.println("Insira o nome do aluno que deseja matricular");
 					String nomeAluno = ler.nextLine();
 					Aluno aluno = alunoService.buscarPorNome(nomeAluno);
@@ -275,19 +295,60 @@ import matricula.repository.AlunosRepository;
 					int idMatricula = ler.nextInt();
 					matriculaService.criarMatricula(idMatricula, aluno.getId(), curso.getId());
 					System.out.println("Matricula realizada com sucesso.");
-					
+					}catch(IllegalArgumentException e) {
+						System.out.println("Erro: " + e.getMessage());
+					}catch(Exception e) {
+						System.out.println("Erro inesperado");
+					}
 					}
 				
 				case 2 ->{
+					try {
 					System.out.println("Insira o nome do aluno que deseja buscar a mátricula: ");
 					String nome = ler.nextLine();
 					Matricula matricula = matriculaService.buscarPorAluno(nome);
-					System.out.println("Curso: " + matricula.getCurso() + 
+					System.out.println("Curso: " + matricula.getCurso().getNome() + 
 							           "Número de mátricula:" + matricula.getId());
-					 
+					}catch(IllegalArgumentException e ) {
+						System.out.println("Erro: " + e.getMessage());					
+					}catch(Exception e) {
+						System.out.println("Erro inesperado");
+					}
+					}
+				
+				case 3 ->{
+					try {
+					System.out.println("Insira o nome do aluno que deseja remover a matrícula de um curso: ");
+					String nome = ler.nextLine();
+					System.out.println("Insira o curso que deseja remover a matricula: ");
+					String nomeC = ler.nextLine();
+					matriculaService.removerMatricula(nome, nomeC);
+					System.out.println("Matricula removida.");
+					}catch(IllegalArgumentException e) {
+						System.out.println("Erro: " +e.getMessage());
+					}catch(Exception e) {
+						System.out.println("Erro inesperado.");
 					}
 				}
 				
+				case 4 ->{
+					for(Matricula matricula : matriculaService.listarTodas().values()) {
+						System.out.println("Matricula: " + matricula.getId() + 
+										   "Aluno: " + matricula.getAluno().getNome() + 
+										   "Curso: " + matricula.getCurso().getNome());
+						System.out.println("-------------------------");
+					}
+				}
+				
+				case 0 ->{
+					return;
+				}
+				
+				default ->{
+					System.out.println("Opção incorreta.");
+				}
+				
+				}
 				}while(opcaoMatricula != 0);
 			}
 }

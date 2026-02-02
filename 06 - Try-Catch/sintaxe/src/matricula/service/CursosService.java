@@ -14,7 +14,6 @@ public class CursosService {
 	public CursosService(CursosRepository repostiorio) {
 		this.repositorio = repositorio;
 	}
-	//Verificação da criação de curso
 	public boolean criarCurso(Curso curso) {
 	if(curso.getId() <= 0) {
 		throw new IllegalArgumentException("ID já cadastrado");
@@ -36,7 +35,6 @@ public class CursosService {
 	return true;	
 	}
 	
-	//Verificação do buscar por id
 	public Curso buscarPorId(int id) {
 		if(repositorio.buscarPorId(id) == null) {
 			throw new NoSuchElementException("Curso não encontrado");
@@ -45,7 +43,6 @@ public class CursosService {
 		return repositorio.buscarPorId(id);
 	}
 	
-	//Verificação de remoção de curso
 	public boolean removerCurso(int id) {
 		if(repositorio.buscarPorId(id) == null) {
 			throw new NoSuchElementException("Curso não encontrado.");
@@ -60,11 +57,9 @@ public class CursosService {
 		if(curso == null) {
 			throw new IllegalArgumentException("Insira um ID de um curso válido.");
 		}
-		//Verifica se o estado é cancelado
 		if(curso.getEstado() == EstadoCurso.CANCELADO) {
 			throw new IllegalArgumentException("Não é possível alterar o estado de um curso cancelado.");
 		}
-		//Se o estado for o mesmo, não faz nada
 		if(curso.getEstado() == estado) {
 			throw new IllegalArgumentException("O estado que você inseriu é o mesmo atual.");
 		}
@@ -73,9 +68,7 @@ public class CursosService {
 		System.out.println("Estado definido com sucesso.");
 		return true;
 	}
-	
-	//Listar todos
-	
+		
 	public HashMap<Integer, Curso> listarCursos(){
 		return repositorio.listarTodos();	}
 

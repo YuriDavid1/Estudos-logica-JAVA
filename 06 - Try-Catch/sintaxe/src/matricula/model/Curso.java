@@ -3,8 +3,8 @@ import  matricula.model.EstadoCurso;
 
 public class Curso {
 
-	private int id;
-	private String nome;
+	final private int id;
+	final private String nome;
 	private int cargaHoraria;
 	private EstadoCurso estado;
 	
@@ -36,6 +36,5 @@ public class Curso {
 	public void setEstado(EstadoCurso estado) {
 	this.estado = estado;
 	
-	}
-	
+	}	
 }

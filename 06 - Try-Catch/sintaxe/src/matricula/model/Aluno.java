@@ -2,8 +2,8 @@ package matricula.model;
 
 public class Aluno {
 
-	private int id;
-	private String nome;
+	final private int id;
+	final private String nome;
 	private int idade;
 	
 	public Aluno(int id, String nome, int idade) {

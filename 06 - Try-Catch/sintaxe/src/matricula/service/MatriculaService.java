@@ -1,4 +1,6 @@
 package matricula.service;
+import java.util.HashMap;
+
 import matricula.model.Aluno;
 import matricula.model.Curso;
 import matricula.model.Matricula;
@@ -54,7 +56,7 @@ public MatriculaService(MatriculaRepository repositorio, AlunosRepository alunoR
 	public Matricula buscarPorAluno(String nomeAluno) {
 
 	    for (Matricula matricula : matriculaRepositorio.listarTodos().values()) {
-	        if (matricula.getAluno().getNome() == nomeAluno) {
+	        if (matricula.getAluno().getNome().equalsIgnoreCase(nomeAluno)) {
 	            return matricula;
 	        }
 	    }
@@ -62,6 +64,27 @@ public MatriculaService(MatriculaRepository repositorio, AlunosRepository alunoR
 	    throw new IllegalArgumentException("Aluno não está matriculado em nenhum curso.");
 	}
 
-	
-	
+	public void removerMatricula(String nomeAluno, String nomeCurso) {
+		Aluno aluno = alunoRepositorio.buscarAlunoPorNome(nomeAluno);
+		if(aluno == null) {
+			throw new IllegalArgumentException("Aluno não encontrado");
+		}
+		Curso curso = cursosRepositorio.buscarCursoPorNome(nomeCurso);
+		if(curso == null) {
+			throw new IllegalArgumentException("Curso não encontrado");
+		}
+		
+		for(Matricula matricula : matriculaRepositorio.listarTodos().values()) {
+			if(matricula.getAluno().getId() == aluno.getId() &&
+				matricula.getCurso().getId() == curso.getId()) {
+				matriculaRepositorio.removerMatricula(matricula.getId());
+				return;
+			}
+		}
+		throw new IllegalArgumentException("Matricula não encontrada");
+	}
+		
+	public HashMap<Integer, Matricula> listarTodas(){
+		return matriculaRepositorio.listarTodos();
+	}
 }
