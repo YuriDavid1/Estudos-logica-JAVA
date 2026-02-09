@@ -6,7 +6,7 @@ public class Usuario {
 
 	int id;
 	String nome;
-	List<Emprestimo> historico = new ArrayList <>();
+	List<Emprestimo> historico;
 	
 	public Usuario (int id, String nome) {
 		this.id = id;
@@ -28,6 +28,10 @@ public class Usuario {
 
 	    public void adicionarEmprestimo(Emprestimo emprestimo) {
 	        historico.add(emprestimo);
+	    }
+	    
+	    public void cancelarEmprestimo(Emprestimo emprestimo) {
+	    	historico.remove(emprestimo);
 	    }
 	}
 
