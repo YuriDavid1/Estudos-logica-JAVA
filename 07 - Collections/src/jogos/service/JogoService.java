@@ -3,11 +3,6 @@ import jogos.model.Jogo;
 import jogos.repository.JogoRepository;
 
 public class JogoService {
-/*Regras obrigatórias:
-Não permitir ID duplicado
-Não permitir nome vazio
-Não permitir cadastrar jogo com mesmo nome
-*/
 	
 	JogoRepository repositorio;
 	
