@@ -10,7 +10,7 @@ public class UsuarioService {
 		this.repositorio = repositorio;
 	}
 	
-	public boolean registrarUsuario(Usuario usuario) {
+	public void registrarUsuario(Usuario usuario) {
 		if(usuario.getId() <= 0) {
 			throw new IllegalArgumentException("O Id deve ser positivo");
 		}
@@ -21,27 +21,24 @@ public class UsuarioService {
 			throw new IllegalArgumentException("O nome não pode estar vázio.");
 		}
 		if(repositorio.buscarUsuNome(usuario.getNome()) != null) {
-			throw new IllegalArgumentException("Jogo já registrado com este nome.");
+			throw new IllegalArgumentException("Usuário já registrado com este nome.");
 		}
 		repositorio.criarUsuario(usuario);
-		return true;
 	}
 	
-	public boolean buscarUsuId(int id) {
+	public Usuario buscarUsuId(int id) {
 		Usuario usu = repositorio.buscarUsuId(id);
 		if(usu == null) {
 			throw new IllegalArgumentException("Usuario não encontrado.");
 		}
-		repositorio.buscarUsuId(id);
-		return true;
+		return usu;
 	}
 	
-	public boolean buscarUsuNome(String nome) {
+	public Usuario buscarUsuNome(String nome) {
 		Usuario usu = repositorio.buscarUsuNome(nome);
 		if(usu == null) {
 			throw new IllegalArgumentException("Usuário não encontrado.");
 		}
-		repositorio.buscarUsuNome(nome);
-		return true;
+		return usu;
 	}
 }

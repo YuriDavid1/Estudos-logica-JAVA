@@ -1,6 +1,9 @@
 package jogos.repository;
 import java.util.Map;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
+
 import jogos.model.Jogo;
 
 public class JogoRepository {
@@ -28,8 +31,8 @@ public class JogoRepository {
 	return null;
 	}
 	
-	public Map<Integer, Jogo> listarTodos() {
-		return jogos;
+	public List<Jogo> listarJogos() {
+	    return new ArrayList<>(jogos.values());
 	}
 	
 }
