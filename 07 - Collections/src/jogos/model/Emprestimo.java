@@ -8,13 +8,19 @@ public class Emprestimo {
 	
 	boolean ativo;
 	
-	public Emprestimo(Usuario usuario, Jogo jogo) {
+	public Emprestimo(int id, Usuario usuario, Jogo jogo) {
+		this.id = id;
 		this.usuario = usuario;
 		this.jogo = jogo;
 		ativo = true;
 	}
 	
 	//GETTERS E SETTERS
+	
+	public int getId() {
+		return id;
+	}
+	
 	public Usuario getUsuario() {
 		return usuario;
 	}
@@ -27,7 +33,7 @@ public class Emprestimo {
 		return ativo;
 	}
 	
-	public void setAtivo(Boolean ativo) {
+	public void setAtivo(boolean ativo) {
 		this.ativo = ativo;
 	}
 	

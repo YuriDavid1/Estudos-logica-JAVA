@@ -11,7 +11,6 @@ public class UsuarioRepository {
 	usuarios.put(usuario.getId(), usuario);
 	}
 	
-	
 	public Usuario buscarUsuId(int id) {
 		return usuarios.get(id);
 	}
