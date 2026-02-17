@@ -27,7 +27,7 @@ public class Jogo {
 		return genero;
 	}
 	
-	public boolean getDisponivel() {
+	public boolean isDisponivel() {
 		return disponivel;
 	}
 	

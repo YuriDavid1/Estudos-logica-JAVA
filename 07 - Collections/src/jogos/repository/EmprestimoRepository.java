@@ -9,13 +9,14 @@ public class EmprestimoRepository {
 
 	Map<Integer, Emprestimo> emprestimoHash = new HashMap<>();
 	
-	public void realizarEmprestimo(Emprestimo emprestimo) {
+	public void salvar(Emprestimo emprestimo) {
 	emprestimoHash.put(emprestimo.getId(), emprestimo);
 	}
 	
-	public void buscarId(int id) {
-	emprestimoHash.get(id);
+	public Emprestimo buscarPorId(int id) {
+	    return emprestimoHash.get(id);
 	}
+
 	
 	public List<Emprestimo> listarAtivos() {
 	    List<Emprestimo> ativos = new ArrayList<>();

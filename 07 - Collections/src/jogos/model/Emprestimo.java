@@ -2,18 +2,17 @@ package jogos.model;
 
 public class Emprestimo {
 
-	int id;
-	Usuario usuario;
-	Jogo jogo;
-	
-	boolean ativo;
-	
-	public Emprestimo(int id, Usuario usuario, Jogo jogo) {
-		this.id = id;
-		this.usuario = usuario;
-		this.jogo = jogo;
-		ativo = true;
-	}
+	 private int id;
+	    private Usuario usuario;
+	    private Jogo jogo;
+	    private boolean ativo;
+
+	    public Emprestimo(int id, Usuario usuario, Jogo jogo) {
+	    this.id = id;
+	    this.usuario = usuario;
+	    this.jogo = jogo;
+	    this.ativo = true;
+	    }
 	
 	//GETTERS E SETTERS
 	
