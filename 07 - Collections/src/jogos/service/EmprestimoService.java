@@ -19,14 +19,23 @@ public class EmprestimoService {
         this.jogoService = jogoService;
     }
 
+<<<<<<< HEAD
     public void criarEmprestimo(int idEmprestimo, String nomeUsu, String nomeJogo) {
+=======
+    public void criarEmprestimo(int idEmprestimo, int idUsuario, int idJogo) {
+>>>>>>> e198b8690854b0f496b51b52906fa44eb2cb00ed
 
         if (repositorio.buscarPorId(idEmprestimo) != null) {
             throw new IllegalArgumentException("ID de empréstimo já existente.");
         }
 
+<<<<<<< HEAD
         Usuario usuario = usuarioService.buscarUsuNome(nomeUsu);
         Jogo jogo = jogoService.buscarUsuNome(nomeJogo);
+=======
+        Usuario usuario = usuarioService.buscarUsuId(idUsuario);
+        Jogo jogo = jogoService.buscarPorId(idJogo);
+>>>>>>> e198b8690854b0f496b51b52906fa44eb2cb00ed
 
         if (!jogo.isDisponivel()) {
             throw new IllegalArgumentException("Jogo indisponível.");
