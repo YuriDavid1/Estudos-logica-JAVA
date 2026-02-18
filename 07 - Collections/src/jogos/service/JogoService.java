@@ -1,13 +1,10 @@
 package jogos.service;
+import java.util.List;
+
 import jogos.model.Jogo;
 import jogos.repository.JogoRepository;
 
 public class JogoService {
-/*Regras obrigatórias:
-Não permitir ID duplicado
-Não permitir nome vazio
-Não permitir cadastrar jogo com mesmo nome
-*/
 	
 	JogoRepository repositorio;
 	
@@ -15,7 +12,7 @@ Não permitir cadastrar jogo com mesmo nome
 		this.repositorio = repositorio;
 	}
 	
-	public boolean registrarJogo(Jogo jogo) {
+	public void registrarJogo(Jogo jogo) {
 		if(jogo.getId() <= 0) {
 			throw new IllegalArgumentException("Insira um número válido");
 		}
@@ -31,37 +28,39 @@ Não permitir cadastrar jogo com mesmo nome
 			throw new IllegalArgumentException("Este jogo já esta registrado");
 		}
 		repositorio.registrarJogo(jogo);
-		return true;
 		}
 		
-		public boolean removerJogo(String nome) {
+		public void removerJogo(String nome) {
 			Jogo jogo = repositorio.buscarPorNome(nome);
 			if(jogo == null) {
 				throw new IllegalArgumentException("Jogo não encontrado para remoção.");
 			}
 			
 			repositorio.removerJogo(jogo.getId());
-			return true;
 		}
-	
 		
-		
-		public boolean buscarPorId(int id) {
+		public Jogo buscarPorId(int id) {
 		Jogo jogo = repositorio.buscarPorId(id);
 		if(jogo == null) {
 			throw new IllegalArgumentException("Id inserido não registrado.");
 		}
-		repositorio.buscarPorId(id);
-		return true;
+		return jogo;
 		}
 		
-		public boolean buscarUsuNome(String nome) {
+		public Jogo buscarUsuNome(String nome) {
 		Jogo jogo = repositorio.buscarPorNome(nome);
 			if(jogo == null) {
 				throw new IllegalArgumentException("Jogo não encontrado");
 			}
-			repositorio.buscarPorNome(nome);
-			return true;
+			return jogo;
 		}
 		
+		public List<Jogo> listarJogos() {
+		List<Jogo> jogos = repositorio.listarJogos();
+		if(jogos == null) {
+			throw new IllegalArgumentException("Nenhum jogo registrado.");
+		}
+		return jogos;
 	}
+		
+}

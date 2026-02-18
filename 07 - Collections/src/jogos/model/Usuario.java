@@ -33,5 +33,7 @@ public class Usuario {
 	    public void cancelarEmprestimo(Emprestimo emprestimo) {
 	    	historico.remove(emprestimo);
 	    }
+	    
+	    
 	}
 
