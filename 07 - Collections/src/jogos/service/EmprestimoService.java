@@ -19,58 +19,42 @@ public class EmprestimoService {
         this.jogoService = jogoService;
     }
 
-<<<<<<< HEAD
     public void criarEmprestimo(int idEmprestimo, String nomeUsu, String nomeJogo) {
-=======
-    public void criarEmprestimo(int idEmprestimo, int idUsuario, int idJogo) {
->>>>>>> e198b8690854b0f496b51b52906fa44eb2cb00ed
-
-        if (repositorio.buscarPorId(idEmprestimo) != null) {
-            throw new IllegalArgumentException("ID de empréstimo já existente.");
-        }
-
-<<<<<<< HEAD
-        Usuario usuario = usuarioService.buscarUsuNome(nomeUsu);
-        Jogo jogo = jogoService.buscarUsuNome(nomeJogo);
-=======
-        Usuario usuario = usuarioService.buscarUsuId(idUsuario);
-        Jogo jogo = jogoService.buscarPorId(idJogo);
->>>>>>> e198b8690854b0f496b51b52906fa44eb2cb00ed
-
-        if (!jogo.isDisponivel()) {
-            throw new IllegalArgumentException("Jogo indisponível.");
-        }
-
-        Emprestimo emprestimo = new Emprestimo(idEmprestimo, usuario, jogo);
-        jogo.setDisponivel(false);
-        usuario.adicionarEmprestimo(emprestimo);
-        repositorio.salvar(emprestimo);
+    	if(repositorio.buscarPorId(idEmprestimo) != null) {
+    		throw new IllegalArgumentException("Id inserido já registrado");
+    	}
+    	Jogo jogo = jogoService.buscarUsuNome(nomeJogo);
+    	if(!jogo.isDisponivel()) {
+    		throw new IllegalArgumentException("O jogo não está disponível para empréstimo.");
+    	}
+    	Usuario usuario = usuarioService.buscarUsuNome(nomeUsu);
+    	Emprestimo emprestimo = new Emprestimo(idEmprestimo, usuario, jogo);
+    	jogo.setDisponivel(false);
+    	usuario.adicionarEmprestimo(emprestimo);
+    	repositorio.salvar(emprestimo);
+      
     }
 
     public void finalizarEmprestimo(int idEmprestimo) {
-        Emprestimo emprestimo = repositorio.buscarPorId(idEmprestimo);
-        if (emprestimo == null) {
-            throw new IllegalArgumentException("Empréstimo não encontrado.");
-        }
+       //Verificar se o emprestimo existe
+    	
+    	
+    	//Verificar se o emprestimo já foi finalizado
 
-        if (!emprestimo.getAtivo()) {
-            throw new IllegalArgumentException("Empréstimo já finalizado.");
-        }
-        emprestimo.setAtivo(false);
-        emprestimo.getJogo().setDisponivel(true);
+        
+        //Finalizar o emprestimo
     }
 
     public List<Emprestimo> listarAtivos() {
-        List<Emprestimo> ativos = repositorio.listarAtivos();
-
-        if (ativos.isEmpty()) {
-            throw new IllegalArgumentException("Nenhum empréstimo ativo.");
-        }
-
-        return ativos;
+        //Verificar se existe emprestimos ativos
+    	
+    	
+    	
+        //Listar
+        
     }
 
     public List<Emprestimo> listarTodos() {
-        return repositorio.listarTodos();
+      //Listar todos
     }
 }
