@@ -36,13 +36,16 @@ public class EmprestimoService {
     }
 
     public void finalizarEmprestimo(int idEmprestimo) {
-       //Verificar se o emprestimo existe
-    	
-    	
-    	//Verificar se o emprestimo já foi finalizado
-
-        
+    	Emprestimo emprestimo = repositorio.buscarPorId(idEmprestimo);    	
+    	if(emprestimo == null) {
+    	throw new IllegalArgumentException("O emprestimo inserido não foi encontrado");
+    	}   	
+    	if(!emprestimo.getAtivo()) {
+    		throw new IllegalArgumentException("O emprestimo está inativo");
+    	}
         //Finalizar o emprestimo
+    	emprestimo.setAtivo(false);
+    	emprestimo.getJogo().setDisponivel(true);
     }
 
     public List<Emprestimo> listarAtivos() {
