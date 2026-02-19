@@ -43,21 +43,20 @@ public class EmprestimoService {
     	if(!emprestimo.getAtivo()) {
     		throw new IllegalArgumentException("O emprestimo está inativo");
     	}
-        //Finalizar o emprestimo
     	emprestimo.setAtivo(false);
     	emprestimo.getJogo().setDisponivel(true);
     }
 
     public List<Emprestimo> listarAtivos() {
-        //Verificar se existe emprestimos ativos
+        List<Emprestimo> ativos = repositorio.listarAtivos();
+    	if(ativos == null) {
+    		throw new IllegalArgumentException("Nenhum emprestimo ativo.");
+    	}
     	
-    	
-    	
-        //Listar
-        
+        return ativos;
     }
 
     public List<Emprestimo> listarTodos() {
-      //Listar todos
+    	return repositorio.listarTodos();
     }
 }
