@@ -1,4 +1,7 @@
 package jogos.view;
+import jogos.model.Emprestimo;
+import jogos.model.Jogo;
+import jogos.model.Usuario;
 import jogos.service.*;
 import java.util.Scanner;
 public class Menu {
@@ -28,6 +31,66 @@ public class Menu {
     	System.out.println("Insira uma das opcoes acima: ");
     	opcao = ler.nextInt();
     	ler.nextLine();
+    	
+    	switch(opcao) {
+    	case 1 ->{
+    		System.out.println("Insira o ID: ");
+    		int id = ler.nextInt();
+    		ler.nextLine();
+    		System.out.println("Insira o nome do jogo: ");
+    		String nome = ler.nextLine();
+    		System.out.println("Insira o genero do jogo: ");
+    		String genero = ler.nextLine();
+    		Jogo jogo = new Jogo (id, nome, genero);
+    		jogoService.registrarJogo(jogo);
+    		System.out.println("Jogo registrado.");
+    	}
+    	
+    	case 2 ->{
+    		System.out.println("Insira o ID: ");
+    		int id = ler.nextInt();
+    		ler.nextLine();
+    		System.out.println("Insira o nome do usuário");
+    		String nome = ler.nextLine();
+    		Usuario usuario = new Usuario(id, nome);
+    		System.out.println("Usuario registrado.");
+    	}
+    	
+    	case 3 ->{
+    		System.out.println("Insira o ID do emprestimo: ");
+    		int id = ler.nextInt();
+    		ler.nextLine();
+    		System.out.println("Insira o nome do usuario: ");
+    		String nome = ler.nextLine();
+    		System.out.println("Insira o nome do jogo que deseja alugar: ");
+    		String nomeJ = ler.nextLine();
+    		emprestimoService.criarEmprestimo(id, nome, nomeJ);
+    		System.out.println("Emprestimo realizado.");
+    	}
+    	
+    	case 4 ->{
+    		System.out.println("Insira o ID do emprestimo");
+    		int id = ler.nextInt();
+    		ler.nextLine();
+    		emprestimoService.finalizarEmprestimo(id);
+    	}
+    	
+    	case 5 ->{
+    		
+    	}
+    	
+    	case 6 ->{
+ 
+    	}
+    	
+    	case 0 ->{
+    		System.out.println("Saindo...");
+    	}
+    	
+    	default ->{
+    		System.out.println("Opção inválida.");
+    		}
+    	}
     	
     	}while(opcao != 0);
     	}
