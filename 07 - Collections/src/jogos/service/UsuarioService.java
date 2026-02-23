@@ -1,5 +1,9 @@
 package jogos.service;
 import jogos.repository.UsuarioRepository;
+
+import java.util.List;
+
+import jogos.model.Emprestimo;
 import jogos.model.Usuario;
 
 public class UsuarioService {
@@ -41,4 +45,18 @@ public class UsuarioService {
 		}
 		return usu;
 	}
-}
+	
+	public List<Emprestimo> listarHistorico(String nomeUsu){
+		Usuario usu = repositorio.buscarUsuNome(nomeUsu);
+		
+		if(usu == null) {
+			throw new IllegalArgumentException("Usuário não encontrado.");
+	    }
+	    if (usu.getHistorico().isEmpty()) {
+	        throw new IllegalArgumentException("Usuário não possui empréstimos.");
+	    } 
+	    return usu.getHistorico();
+		}
+		
+	}
+

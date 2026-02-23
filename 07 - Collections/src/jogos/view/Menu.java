@@ -3,6 +3,8 @@ import jogos.model.Emprestimo;
 import jogos.model.Jogo;
 import jogos.model.Usuario;
 import jogos.service.*;
+
+import java.util.List;
 import java.util.Scanner;
 public class Menu {
 	
@@ -34,6 +36,7 @@ public class Menu {
     	
     	switch(opcao) {
     	case 1 ->{
+    		try {
     		System.out.println("Insira o ID: ");
     		int id = ler.nextInt();
     		ler.nextLine();
@@ -44,7 +47,10 @@ public class Menu {
     		Jogo jogo = new Jogo (id, nome, genero);
     		jogoService.registrarJogo(jogo);
     		System.out.println("Jogo registrado.");
-    	}
+    		}catch(Exception e) {
+    			System.out.println(e.getMessage());
+    		}
+    		}
     	
     	case 2 ->{
     		System.out.println("Insira o ID: ");
@@ -76,12 +82,34 @@ public class Menu {
     	}
     	
     	case 5 ->{
-    		
+    		try {
+    			List<Jogo> jogos = jogoService.listarJogos();
+    			for(Jogo jogo : jogos) {
+    				System.out.println("Nome: " + jogo.getNome());
+    				}
+    			
+    		}catch(Exception e) {
+    			System.out.println(e.getMessage());
+    		}
     	}
     	
     	case 6 ->{
- 
+    		try{
+    		System.out.println("Insira o nome do usuário que deseja:");
+    		String nome = ler.nextLine();
+    		
+    		List<Emprestimo> historico = usuarioService.listarHistorico(nome);
+    		
+    		for(Emprestimo e : historico) {
+    			System.out.println("ID: " + e.getId() +
+    		            		   " | Jogo: " + e.getJogo().getNome() +
+    		            		   " | Ativo: " + e.getAtivo());
+    		    }
+    	}catch(Exception e) {
+    	    System.out.println(e.getMessage());
+    		}
     	}
+    		
     	
     	case 0 ->{
     		System.out.println("Saindo...");

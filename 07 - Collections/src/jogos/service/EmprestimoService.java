@@ -49,7 +49,7 @@ public class EmprestimoService {
 
     public List<Emprestimo> listarAtivos() {
         List<Emprestimo> ativos = repositorio.listarAtivos();
-    	if(ativos == null) {
+    	if(ativos.isEmpty()) {
     		throw new IllegalArgumentException("Nenhum emprestimo ativo.");
     	}
     	
