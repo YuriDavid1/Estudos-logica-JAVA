@@ -134,7 +134,6 @@ public class Menu {
     	    System.out.println("Erro: " + e.getMessage());
     		}
     	}
-    		
     	
     	case 0 ->{
     		System.out.println("Saindo...");
