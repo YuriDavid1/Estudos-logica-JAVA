@@ -48,21 +48,27 @@ public class Menu {
     		jogoService.registrarJogo(jogo);
     		System.out.println("Jogo registrado.");
     		}catch(Exception e) {
-    			System.out.println(e.getMessage());
+    			System.out.println("Erro: " + e.getMessage());
     		}
     		}
     	
     	case 2 ->{
+    		try {
     		System.out.println("Insira o ID: ");
     		int id = ler.nextInt();
     		ler.nextLine();
     		System.out.println("Insira o nome do usuário");
     		String nome = ler.nextLine();
     		Usuario usuario = new Usuario(id, nome);
+    		usuarioService.registrarUsuario(usuario);
     		System.out.println("Usuario registrado.");
+    		}catch(Exception e) {
+    			 System.out.println("Erro: " + e.getMessage());
+    		}
     	}
     	
     	case 3 ->{
+    		try {
     		System.out.println("Insira o ID do emprestimo: ");
     		int id = ler.nextInt();
     		ler.nextLine();
@@ -72,22 +78,37 @@ public class Menu {
     		String nomeJ = ler.nextLine();
     		emprestimoService.criarEmprestimo(id, nome, nomeJ);
     		System.out.println("Emprestimo realizado.");
-    	}
+    		}catch(Exception e) {
+    			 System.out.println("Erro: " + e.getMessage());
+    		}
+    		}
     	
     	case 4 ->{
+    		try {
     		System.out.println("Insira o ID do emprestimo");
     		int id = ler.nextInt();
     		ler.nextLine();
     		emprestimoService.finalizarEmprestimo(id);
-    	}
+    		System.out.println("Emprestimo finalizado.");
+    		}catch(Exception e) {
+    			 System.out.println("Erro: " + e.getMessage());
+    		}
+    		}
     	
     	case 5 ->{
     		try {
     			List<Jogo> jogos = jogoService.listarJogos();
+    			 if (jogos.isEmpty()) {
+                     System.out.println("Nenhum jogo cadastrado.");
+    			 } else {
+                     System.out.println("\n--- Lista de Jogos ---");
     			for(Jogo jogo : jogos) {
-    				System.out.println("Nome: " + jogo.getNome());
+    				System.out.println("ID: " + jogo.getId() +
+                            " | Nome: " + jogo.getNome() +
+                            " | Genero: " + jogo.getGenero() +
+                            " | Disponivel: " + jogo.isDisponivel());
     				}
-    			
+    			 }
     		}catch(Exception e) {
     			System.out.println(e.getMessage());
     		}
@@ -99,14 +120,18 @@ public class Menu {
     		String nome = ler.nextLine();
     		
     		List<Emprestimo> historico = usuarioService.listarHistorico(nome);
-    		
+    		if (historico.isEmpty()) {
+                System.out.println("Nenhum emprestimo encontrado.");
+            } else {
+                System.out.println("\n--- Historico ---");
     		for(Emprestimo e : historico) {
     			System.out.println("ID: " + e.getId() +
     		            		   " | Jogo: " + e.getJogo().getNome() +
     		            		   " | Ativo: " + e.getAtivo());
     		    }
+            }
     	}catch(Exception e) {
-    	    System.out.println(e.getMessage());
+    	    System.out.println("Erro: " + e.getMessage());
     		}
     	}
     		
