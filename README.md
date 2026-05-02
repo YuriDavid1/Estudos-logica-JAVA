@@ -1,69 +1,153 @@
-# Estudos de Lógica de Programação - Java
+# Estudos de Lógica de Programação em Java
 
-Este repositório mostra minha jornada de aprendizado e evolução nos fundamentos da programação utilizando a linguagem Java.
+Repositório com minha evolução em lógica de programação e Java, contendo desde conceitos básicos até implementação de mini sistemas utilizando boas práticas como separação em camadas (model, repository, service, view).
 
-Aqui estão os desafios práticos e projetos desenvolvidos, começando pela lógica estruturada e avançando para Orientação a Objetos e Estruturas de Dados.
+# Tecnologias utilizadas
+Java
 
-# Sobre o Repositório
+Programação Orientada a Objetos (POO)
 
-O objetivo destes projetos é consolidar conhecimentos essenciais da linguagem. Os códigos iniciais focam em lógica procedural, enquanto os mais recentes implementam classes, objetos e coleções dinâmicas.
+Collections (ArrayList, HashMap)
 
-**Principais tópicos praticados:**
-* Estruturas Condicionais (`if/else`, `switch/case`)
-* Laços de Repetição (`for`, `while`, `do-while`)
-* Manipulação de Vetores/Arrays (Arrays Paralelos)
-* Tratamento de Entrada de Dados (`Scanner`)
-* Modularização (Métodos estáticos)
-* Validação de Regras de Negócio e "Defensive Programming"
-* Orientação a Objetos (Classes, Atributos, Métodos, Construtores)
-* Coleções Java (ArrayList, HashMap)
+Tratamento de exceções (try-catch)
 
-# Projetos Destacados
+Git e GitHub
 
-## 1. Sistema de Gerenciamento Hoteleiro (Desafio Final - Semana 1)
-Um sistema completo para recepção de uma pousada, rodando no console.
-* **Funcionalidades:** Check-in com validação de disponibilidade, Check-out com cálculo de diárias, Mapa de Ocupação em tempo real e Relatório de Faturamento previsto.
-* **Destaque Técnico:** Uso de arrays paralelos para conectar quartos, nomes de hóspedes e dias de estadia; blindagem contra índices inválidos (evitando *crashes* e *bugs*).
+# Estrutura do Projeto
 
-## 2. Controle de Estoque de Loja
-Sistema para cadastro e venda de produtos.
-* **Funcionalidades:** Cadastro dinâmico de produtos, listagem formatada e baixa automática de estoque na venda.
-* **Destaque Técnico:** Lógica de busca por posições vazias (`null`) em vetores e acumuladores para relatórios financeiros.
+### 01 - Conceitos Básicos
 
-## 3. Simulador Bancário
-Primeiro projeto focado em estruturas de decisão.
-* **Funcionalidades:** Depósito, Saque, Consulta de Saldo e Extrato simples.
-* **Destaque Técnico:** Uso de menu interativo com `switch/case`.
+Uso de Scanner para entrada de dados
 
-## 4. Sistema Bancário 2.0 (POO + ArrayList)
-Refatoração do simulador bancário antigo, abandonando vetores fixos.
+Declaração e manipulação de variáveis
 
-## 5. Estudos com HashMap (Loja Gamer & TodoList)
-Introdução ao conceito de Chave-Valor para manipulação eficiente de dados.
+Exercícios introdutórios de lógica
 
-Foco: Performance de busca e substituição de lógica linear por dicionários.
-Comandos: Uso prático de .put(), .get() e .containsKey().
+# Exemplos:
 
-* **Funcionalidades:** Criação dinâmica de contas, gerenciamento via lista (ArrayList) e manipulação de objetos.
+Entrada de dados via teclado
 
-* **Destaque Técnico:** Encapsulamento de saldo e uso de construtores para inicializar objetos.
+Operações com variáveis
 
-# Tecnologias Utilizadas
+### 02 - Arrays e Estruturas de Repetição
 
-* **Linguagem:** Java (JDK)
-* **IDE:** Eclipse
-* **Controle de Versão:** Git/GitHub
+Manipulação de arrays
 
-# Próximos Passos
-Atualmente estou focado em dominar a Lógica Estruturada. Os próximos passos desta jornada incluem:
-Atualmente estou seguindo um roadmap focado em empregabilidade Java Júnior. Minha evolução:
+Laços for, while e switch
 
-[x] Lógica de Programação e Algoritmos.
+# Projetos:
 
-[x] Refatoração para Orientação a Objetos (POO).
+Sistema simples de hotel utilizando arrays
 
-[x] Implementação de coleções (ArrayList, HashMap).
+Simulação de loja com arrays
 
-[x] Arquitetura em Camadas (Service, Repository).
+Lógica de banco usando repetição
 
-[x] Persistência de Dados (Arquivos e Banco de Dados SQL).
+### 03 - Programação Orientada a Objetos
+
+Criação de classes e objetos
+
+Construtores
+
+Encapsulamento
+
+# Projetos:
+
+Classe Carro com atributos e métodos
+
+Sistema de conta bancária simples
+
+Sistema de cadastro de pessoa
+
+### 04 - ArrayList e ForEach
+
+Uso de listas dinâmicas (ArrayList)
+
+Estruturação de código mais organizada
+
+# Projetos:
+
+Sistema de conta bancária refatorado
+
+Lista de pessoas com operações básicas
+
+To-do list simples
+
+### 05 - HashMap e Estrutura em Camadas
+
+Uso de HashMap para armazenamento
+
+Separação em camadas:
+
+model
+
+repository
+
+service
+
+view
+
+# Projetos:
+
+Sistema de gerenciamento de livros
+
+Sistema de cursos
+
+Sistema de tarefas (ToDo List)
+
+### 06 - Tratamento de Exceções (Try-Catch)
+
+Uso de try-catch
+
+Tratamento de erros em sistemas
+
+# Projeto:
+
+Sistema de matrícula com tratamento de exceções
+
+### 07 - Collections Avançado
+
+Uso avançado de ArrayList e Map
+
+Organização de sistemas mais completos
+
+# Projeto:
+
+Sistema de gerenciamento de jogos:
+
+Usuários
+
+Jogos
+
+Empréstimos
+
+### Como executar
+
+Clone o repositório:
+
+git clone https://github.com/YuriDavid1/Estudos-logica-JAVA.git
+Abra no IntelliJ IDEA
+
+Execute qualquer classe Main.java dentro dos projetos
+
+# Evolução
+
+✔️ Lógica de programação
+
+✔️ Estruturas de controle
+
+✔️ Programação Orientada a Objetos
+
+✔️ Collections (ArrayList, HashMap)
+
+✔️ Arquitetura em camadas
+
+✔️ Aprimorando boas práticas e projetos mais complexos
+
+# Objetivo
+
+Me preparar para ingressar no mercado como desenvolvedor Java (estágio/júnior), consolidando uma base sólida em lógica e desenvolvimento de sistemas.
+
+# Contato
+
+LinkedIn: https://www.linkedin.com/in/yuri-davi-815496385/
